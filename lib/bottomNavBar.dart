@@ -55,7 +55,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           _bottomNavIcon(Icons.grid_view_rounded, 1),
           _bottomNavIcon(Icons.route_rounded, 2),
           _bottomNavIcon(Icons.flight_takeoff, 3),
-          _bottomNavIcon(Icons.hotel, 4),
           const CircleAvatar(
             radius: 18,
             backgroundImage: AssetImage('assets/images/profiles/yavuz.jpg'),
