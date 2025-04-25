@@ -125,14 +125,57 @@ class _FlightSearchPageState extends State<FlightSearchPage>
               selectedColor: Colors.white,
               fillColor: const Color(0xFF1E2E1B),
               color: Colors.black,
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text("One way"),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1E2E1B),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      children: const [
+                        Text("One way", style: TextStyle(color: Colors.white)),
+                        // SizedBox(width: 10),
+                        // Icon(
+                        //   Icons.calendar_month_outlined,
+                        //   size: 16,
+                        //   color: Colors.black,
+                        // ),
+                      ],
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text("Round trip"),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 230, 230, 230),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      children: const [
+                        Text(
+                          "Round trip",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        // SizedBox(width: 10),
+                        // Icon(
+                        //   Icons.calendar_month_outlined,
+                        //   size: 16,
+                        //   color: Colors.black,
+                        // ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
               onPressed: null,

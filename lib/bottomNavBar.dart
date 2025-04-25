@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gashtyar/main.dart';
+import 'DestinationScreen.dart';
 import 'HomeScreen.dart'; // Important to import MainNavigationScreen
 import 'FlightSearchPage.dart';
 import 'HotelDetailsPage.dart'; // Also import FlightSearchPage
@@ -19,6 +20,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    } else if (index == 1) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const DestinationScreen()),
       );
     } else if (index == 3) {
       Navigator.pushReplacement(
@@ -47,7 +53,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         children: [
           _bottomNavIcon(Icons.home, 0),
           _bottomNavIcon(Icons.grid_view_rounded, 1),
-          _bottomNavIcon(Icons.cable, 2),
+          _bottomNavIcon(Icons.route_rounded, 2),
           _bottomNavIcon(Icons.flight_takeoff, 3),
           _bottomNavIcon(Icons.hotel, 4),
           const CircleAvatar(
@@ -66,7 +72,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         size: 30,
         color:
             widget.currentIndex == index
-                ? const Color(0xFFCEE741)
+                ? const Color.fromARGB(255, 119, 195, 130)
                 : Colors.grey.shade400,
       ),
       onPressed: () => _onItemTapped(index),
