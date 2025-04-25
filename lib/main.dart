@@ -70,7 +70,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                       children: const [
                         SizedBox(height: 40),
                         Text(
-                          "Hi, Morgan 👋",
+                          "Hi, Mohammed 👋",
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
@@ -145,7 +145,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                       500, // Circle width (same as height for a perfect circle)
                   child: Positioned.fill(
                     child: Image.asset(
-                      'assets/images/forest_2.jpeg', // Your image path
+                      'assets/images/HomeScreen/forest.jpeg', // Your image path
                       fit:
                           BoxFit
                               .fill, // Make sure the image covers the available space
@@ -263,7 +263,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                       _bottomNavIcon(Icons.calendar_month_outlined, 3),
                       CircleAvatar(
                         radius: 18,
-                        backgroundImage: AssetImage('assets/images/yavuz.jpg'),
+                        backgroundImage: AssetImage(
+                          'assets/images/profiles/yavuz.jpg',
+                        ),
                       ),
                     ],
                   ),
@@ -286,7 +288,16 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 ? const Color(0xFFCEE741)
                 : Colors.grey.shade400,
       ),
-      onPressed: () => setState(() => _currentIndex = index),
+      onPressed: () {
+        setState(() => _currentIndex = index);
+
+        if (index == 2) {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => Nextscreen()),
+          // );
+        }
+      },
     );
   }
 }
@@ -328,10 +339,7 @@ Widget _tab(String title, bool isActive) {
       ), // Padding inside button
       elevation: 0, // No shadow for flat design
     ),
-    onPressed: () {
-      // Add your onPressed functionality here, for example:
-      print('$title button pressed');
-    },
+    onPressed: () {},
     child: Text(
       title,
       style: const TextStyle(
