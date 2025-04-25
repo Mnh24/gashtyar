@@ -337,6 +337,7 @@ class _HotelDetailsPageState extends State<HotelDetailsPage>
 
   Widget _featureIcons() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _featureBox(Icons.bed, "1 king bed"),
         const SizedBox(width: 10),
