@@ -53,7 +53,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         children: [
           _bottomNavIcon(Icons.home, 0),
           _bottomNavIcon(Icons.grid_view_rounded, 1),
-          _bottomNavIcon(Icons.route_rounded, 2),
+          // _bottomNavIcon(Icons.route_rounded, 2),
           _bottomNavIcon(Icons.flight_takeoff, 3),
           const CircleAvatar(
             radius: 18,
