@@ -67,14 +67,17 @@ class _DestinationScreenState extends State<DestinationScreen>
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
-        return Scaffold(
-          backgroundColor: _scaffoldColorAnimation.value,
-          body: SafeArea(
-            child: SlideTransition(
-              position: _containerSlideAnimation,
-              child: FadeTransition(
-                opacity: _fadeAnimation,
-                child: _buildContent(),
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(60),
+          child: Scaffold(
+            backgroundColor: _scaffoldColorAnimation.value,
+            body: SafeArea(
+              child: SlideTransition(
+                position: _containerSlideAnimation,
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: _buildContent(),
+                ),
               ),
             ),
           ),

@@ -70,7 +70,7 @@ class _HotelDetailsPageState extends State<HotelDetailsPage>
       animation: _controller,
       builder: (context, child) {
         return ClipRRect(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(60),
           child: Scaffold(
             backgroundColor: _scaffoldColorAnimation.value,
             body: SafeArea(

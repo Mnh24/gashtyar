@@ -61,7 +61,7 @@ class _FlightSearchPageState extends State<FlightSearchPage>
       animation: _controller,
       builder: (context, child) {
         return ClipRRect(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(60),
           child: Scaffold(
             backgroundColor: _backgroundColorAnimation.value,
             body: SlideTransition(

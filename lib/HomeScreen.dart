@@ -57,18 +57,13 @@ class _HomeScreenState extends State<HomeScreen>
     super.dispose();
   }
 
-  final List<Widget> _screens = [
-    const DestinationsScreen(),
-    const ProfileScreen(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
         return ClipRRect(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(60),
           child: Scaffold(
             backgroundColor: _scaffoldColorAnimation.value,
             body: SlideTransition(
@@ -286,26 +281,4 @@ Widget _tab(String title, bool isActive) {
     onPressed: () {},
     child: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
   );
-}
-
-class DestinationsScreen extends StatelessWidget {
-  const DestinationsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Destinations Page", style: TextStyle(fontSize: 24)),
-    );
-  }
-}
-
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Profile Page", style: TextStyle(fontSize: 24)),
-    );
-  }
 }
