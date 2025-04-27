@@ -2,4 +2,7 @@
 travel application UI AND Laravel API
 
 
-![photo_2025-04-25_11-17-23](https://github.com/user-attachments/assets/d3d10350-aa52-4552-aa50-85667db6c618)
+![photo_2025-04-27_09-56-57](https://github.com/user-attachments/assets/c9895550-7969-4438-b0af-87f6bfa9a55d)
+
+
+
