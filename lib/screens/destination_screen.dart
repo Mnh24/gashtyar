@@ -68,7 +68,12 @@ class _DestinationScreenState extends State<DestinationScreen>
       animation: _controller,
       builder: (context, child) {
         return ClipRRect(
-          borderRadius: BorderRadius.circular(60),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(60),
+            topRight: Radius.circular(60),
+            bottomRight: Radius.circular(50),
+            bottomLeft: Radius.circular(50),
+          ),
           child: Scaffold(
             backgroundColor: _scaffoldColorAnimation.value,
             body: SafeArea(
