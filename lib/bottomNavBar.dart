@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gashtyar/main.dart';
-import 'DestinationScreen.dart';
 import 'HomeScreen.dart'; // Important to import MainNavigationScreen
 import 'FlightSearchPage.dart';
-import 'HotelDetailsPage.dart'; // Also import FlightSearchPage
+import 'HotelDetailsPage.dart';
+import 'screens/destination_screen.dart'; // Also import FlightSearchPage
 
 class BottomNavBar extends StatefulWidget {
   final int currentIndex;

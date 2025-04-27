@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 500),
     );
 
     _scaffoldColorAnimation = ColorTween(

@@ -1,6 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'HotelDetailsPage.dart';
-import 'bottomNavBar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../HotelDetailsPage.dart';
+import '../bottomNavBar.dart';
+
+import '../blocs/destination/destination_bloc.dart';
+import '../blocs/destination/destination_state.dart';
+import '../models/destination.dart';
 
 class DestinationScreen extends StatefulWidget {
   const DestinationScreen({super.key});
@@ -16,16 +23,6 @@ class _DestinationScreenState extends State<DestinationScreen>
   late Animation<Color?> _containerColorAnimation;
   late Animation<Offset> _containerSlideAnimation;
   late Animation<double> _fadeAnimation;
-
-  final destinations = [
-    ["Shangri-La's", "", "assets/images/hotel/hotelParadise.jpeg"],
-    ["SWITZERLAND", "Emerald Pass", "assets/images/Countries/switzerland.jpg"],
-    ["CANADA", "Summit Serenity", "assets/images/Countries/canada.jpeg"],
-    ["NEW ZEALAND", "", "assets/images/Countries/nz.jpeg"],
-    ["AUSTRIA", "", "assets/images/Countries/austria.jpeg"],
-    ["Turkey", "Istanbul", "assets/images/Countries/Istanbul.jpeg"],
-    ["Turkey", "Bosphorus", "assets/images/Countries/IstanbulBosphorus.jpeg"],
-  ];
 
   @override
   void initState() {
@@ -115,30 +112,50 @@ class _DestinationScreenState extends State<DestinationScreen>
               _categoryChips(),
               const SizedBox(height: 20),
               Expanded(
-                child: GridView.builder(
-                  itemCount: destinations.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 0.75,
-                  ),
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HotelDetailsPage(),
-                          ),
-                        );
-                      },
-                      child: DestinationCard(
-                        country: destinations[index][0],
-                        title: destinations[index][1],
-                        imagePath: destinations[index][2],
-                      ),
-                    );
+                child: BlocBuilder<DestinationBloc, DestinationState>(
+                  builder: (context, state) {
+                    if (state is DestinationLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is DestinationLoaded) {
+                      final List<Destination> destinations = state.destinations;
+
+                      return GridView.builder(
+                        itemCount: destinations.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                              childAspectRatio: 0.75,
+                            ),
+                        itemBuilder: (context, index) {
+                          final destination = destinations[index];
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => const HotelDetailsPage(),
+                                ),
+                              );
+                            },
+                            child: DestinationCard(
+                              country: destination.category,
+                              title: destination.name,
+                              imageUrl:
+                                  'https://dlnyaba.com/gashtyar/public/storage/images/Countries/${destination.image}',
+                            ),
+                          );
+                        },
+                      );
+                    } else if (state is DestinationError) {
+                      return Center(child: Text(state.message));
+                    } else {
+                      return const Center(
+                        child: Text('No destinations found.'),
+                      );
+                    }
                   },
                 ),
               ),
@@ -205,13 +222,13 @@ class _DestinationScreenState extends State<DestinationScreen>
 class DestinationCard extends StatelessWidget {
   final String country;
   final String title;
-  final String imagePath;
+  final String imageUrl;
 
   const DestinationCard({
     super.key,
     required this.country,
     required this.title,
-    required this.imagePath,
+    required this.imageUrl,
   });
 
   @override
@@ -220,11 +237,15 @@ class DestinationCard extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.asset(
-            imagePath,
-            height: double.infinity,
-            width: double.infinity,
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            placeholder: (context, url) => Container(color: Colors.grey[300]),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+            fadeInDuration: const Duration(milliseconds: 500),
             fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+            filterQuality: FilterQuality.medium,
           ),
         ),
         Positioned(
@@ -245,17 +266,17 @@ class DestinationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                country,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
                 title,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                country,
+                style: const TextStyle(
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
